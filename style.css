@@ -1,34 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-size: 20px;
-}
-
-body {
-    background-image: linear-gradient(265deg, #f4f4f4 0%, silver 100%);
+    font-size: 30px;
+    font-family: 'Lato', sans-serif;
+    color: white;
 }
 
 .container {
+    border: 50px solid maroon;
+    background: green;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100vh;
     width: 100vw;
 }
 
-.scoring {
-    padding: 5%;
+.playerOne {
     line-height: 3;
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
     width: 50vw;
 }
 
 .diceBox {
-    padding: 2%;
     display: flex;
     justify-content: center;
+    margin-top: 2%;
     width: 20vw;
 }
 
@@ -37,6 +40,14 @@ body {
 }
 
 #roll-btn {
+    border: 1px solid silver;
     border-radius: 5px;
     padding: 2%;
+    background-color: transparent;
+}
+
+#winOrLose {
+    font-size: 50px;
+    color: gold;
+    font-weight: bold;
 }
