@@ -23,11 +23,13 @@ const winLoss = () => {
     if (numberRolled == 1) {
         winOrLose.textContent = "You lose.";
         winOrLose.style.visibility = "visible";
+        // playerScore.style.visibility = "hidden";
         points = 0;
         rollButton.textContent = "Try Again?";
     } else if (points >= 20) {
         winOrLose.textContent = "You won!";
         winOrLose.style.visibility = "visible";
+        // playerScore.style.visibility = "hidden";
         points = 0;
         rollButton.textContent = "Play Again?";
     } else {
@@ -43,6 +45,7 @@ const logScore = () => {
 
 // event listener to perform functions when the button is clicked
 rollButton.addEventListener("click", () => {
+    // playerScore.style.visibility = "visible";
     // hides the win/loss message
     winOrLose.style.visibility = "hidden";
     // console.log("button clicked");
@@ -50,8 +53,8 @@ rollButton.addEventListener("click", () => {
     playerScore.textContent = `Dice Roll: ${numberRolled}`;
     diceImage.style.visibility = "visible";
     // changes the dice image to the one matching the number rolled
-    diceImage.src = `img/dice${numberRolled}.png`;
+    diceImage.src = `dice${numberRolled}.png`;
     logScore();
-    currentScore.textContent = `Current Score: ${points}`;
+    currentScore.textContent = `Score: ${points}`;
     winLoss();
 });

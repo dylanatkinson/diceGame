@@ -23,9 +23,8 @@
 .playerOne {
     line-height: 3;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50vw;
+    justify-content: space-evenly;
+    width: 90vw;
 }
 
 .diceBox {
@@ -47,7 +46,7 @@
 }
 
 #winOrLose {
-    font-size: 50px;
+    /* font-size: 50px; */
     color: gold;
     font-weight: bold;
 }
