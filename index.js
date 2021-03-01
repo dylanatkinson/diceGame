@@ -49,7 +49,7 @@ const rollTheDice = function () {
     <p>Your Score: ${score}</p>
     `;
     diceImage.src = `img/dice${numberRolled}.png`;
-    if(numberRolled === 1 || score >= 20) {
+    if(numberRolled === 1 || score > 20) {
         gameOver(numberRolled, score);
     }
 }
