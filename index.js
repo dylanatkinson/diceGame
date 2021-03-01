@@ -1,60 +1,60 @@
-// sets variables for the dice roll and scoring
-let numberRolled;
-let points = 0;
+// Getting DOM elements
+let startGameBtn = document.querySelector('#start-button');
+let rollBtn = document.querySelector('#roll-button');
+let diceImage = document.querySelector('.dice');
+let gameInstructions = document.querySelector('.game-instructions');
+let displayScore = document.querySelector('.your-score');
 
-// collects p elements for roll-btn button, player score, dice image, current score and win or lose from html file
-const rollButton = document.getElementById("roll-btn");
-const playerScore = document.getElementById("playerScore");
-const diceImage = document.getElementById("diceImage");
-const currentScore = document.getElementById("currentScore");
-const winOrLose = document.getElementById("winOrLose");
+// Setting the score to nothing
+let score = null;
 
-// sets dice image to not show
-diceImage.style.visibility = "hidden";
-
-// rolls the dice to give a random number between 1 and 6
-const rollDice = () => {
-    numberRolled = Math.ceil(Math.random() * 6);
-    console.log(`The random roll is ${numberRolled}`);
-};
-
-// if statement to display the message if you win/lose
-const winLoss = () => {
-    if (numberRolled == 1) {
-        winOrLose.textContent = "You lose.";
-        winOrLose.style.visibility = "visible";
-        // playerScore.style.visibility = "hidden";
-        points = 0;
-        rollButton.textContent = "Try Again?";
-    } else if (points >= 20) {
-        winOrLose.textContent = "You won!";
-        winOrLose.style.visibility = "visible";
-        // playerScore.style.visibility = "hidden";
-        points = 0;
-        rollButton.textContent = "Play Again?";
+// Game over parameters
+const gameOver = function (numberRolled, score) {
+    rollBtn.disabled = true;
+    if (numberRolled === 1) {
+        displayScore.innerHTML = `
+        <p>You rolled 1, game over!</p>
+        `;
     } else {
-        rollButton.textContent = "Click to Roll";
-    };
-};
+        displayScore.innerHTML = `
+        <p>You Won! Final Score: ${score}</p>
+        `;
+    }
+    setTimeout(resetGame, 3000);
+}
 
-// function to add the number rolled by the dice to the points scored by the player
-const logScore = () => {
-    points += numberRolled;
-    console.log(`Then added to the points is ${points}`);
-};
+// Resets the game to play again
+const resetGame = function () {
+    rollBtn.disabled = false;
+    rollBtn.style.visibility = 'hidden';
+    gameInstructions.style.visibility = 'visible';
+    displayScore.innerHTML = '';
+    startGameBtn.style.visibility = 'visible';
+    score = null;
+}
 
-// event listener to perform functions when the button is clicked
-rollButton.addEventListener("click", () => {
-    // playerScore.style.visibility = "visible";
-    // hides the win/loss message
-    winOrLose.style.visibility = "hidden";
-    // console.log("button clicked");
-    rollDice();
-    playerScore.textContent = `Dice Roll: ${numberRolled}`;
-    diceImage.style.visibility = "visible";
-    // changes the dice image to the one matching the number rolled
-    diceImage.src = `dice${numberRolled}.png`;
-    logScore();
-    currentScore.textContent = `Score: ${points}`;
-    winLoss();
-});
+// This function sets up the game
+const startGame = function () {
+    startGameBtn.style.visibility = 'hidden';
+    gameInstructions.style.visibility = 'hidden';
+    rollBtn.style.visibility = 'visible';
+    displayScore.style.visibility = 'visible';
+}
+
+// Function to roll the dice
+const rollTheDice = function () {
+    let numberRolled = Math.ceil(Math.random() * 6); 
+    score += numberRolled;
+    displayScore.innerHTML = `
+    <p>Your Score: ${score}</p>
+    `;
+    diceImage.src = `img/dice${numberRolled}.png`;
+    if(numberRolled === 1 || score >= 20) {
+        gameOver(numberRolled, score);
+    }
+}
+
+// Event listeners for buttons clicked
+startGameBtn.addEventListener('click', startGame);
+rollBtn.addEventListener('click', rollTheDice);
+document.addEventListener('DOMContentLoaded', resetGame);

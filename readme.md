@@ -26,3 +26,8 @@ The CSS is very basic, I used FlexBox styling to move around my elements which h
 
 I would like to take the CSS further and practice adding in a sidebar to show the values rather than having it all cramped together.
 The overall style could also be improved to be less basic, perhaps more modern and more interesting to look at.
+
+# Updates
+
+I've refactored the code since my initial commit, to break functionality down further into more readable snippets.
+The majority of the code remains as a means to hide or display elements based on flow control principles.
